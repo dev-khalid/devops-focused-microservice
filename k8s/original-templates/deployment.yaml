@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nesjs-deployment
+  labels: 
+    app: nesjs
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: nestjs
+  template: 
+    metadata: 
+      labels: 
+        app: nestjs
+    spec: 
+      containers: 
+      - name: nestjs-pod
+        image: ghcr.io/dev-khalid/nestjs-app-optimized-build:latest
+        imagePullPolicy: Always
+        ports: 
+        - containerPort: 3000
+      imagePullSecrets: 
+      - name: dockerconfigjson-github-com
